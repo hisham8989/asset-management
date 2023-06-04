@@ -35,13 +35,13 @@ if (env.name === "production") {
 
 const port = env.port;
 
-// app.use(function (err, req, res, next) {
-//   if (err instanceof ValidationError) {
-//     return res.status(err.statusCode).json(err);
-//   }
+app.use(function (err, req, res, next) {
+  if (err instanceof ValidationError) {
+    return res.status(err.statusCode).json(err);
+  }
 
-//   return res.status(500).json(err);
-// });
+  return res.status(500).json(err);
+});
 
 connectDB()
   .then((connectedDb) => {
