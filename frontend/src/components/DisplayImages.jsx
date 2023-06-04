@@ -37,7 +37,7 @@ const DisplayImages = () => {
   if (loading) {
     return (
       <div>
-        <h1>Images</h1>
+        <h1>Image</h1>
         <h3>loading...</h3>
       </div>
     );
