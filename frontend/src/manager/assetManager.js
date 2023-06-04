@@ -11,10 +11,11 @@ const getAssetInfo = async () => {
 };
 
 const createAssetData = async (body) => {
-  const { user } = JSON.parse(localStorage.getItem("token"));
+  const { user, token } = JSON.parse(localStorage.getItem("token"));
   const data = await postApiWithFiles(
     `${API_CONSTANTS.createAsset}/${user._id}`,
-    body
+    body,
+    token
   );
   return data;
 };

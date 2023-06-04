@@ -9,11 +9,22 @@ const assetDao = new AssetDao();
 
 export const createAsset = async (req, res) => {
   const { userId } = req.params;
+  if (!req.body.name || !req.body.category || req.body.tags.length === 0) {
+    return res.status(400).json({
+      success: false,
+      message: "missing required field",
+      error: {},
+    });
+  }
   const zipFile = req.file;
   const __dirname = path.resolve();
   const tempDir = path.join(__dirname, "tmp");
   if (!zipFile) {
-    return res.status(400).send("No zip file provided");
+    return res.status(400).json({
+      success: false,
+      message: "No zip file provided",
+      error: {},
+    });
   }
   const zip = new AdmZip(zipFile.path);
   zip.extractAllTo(tempDir, true);

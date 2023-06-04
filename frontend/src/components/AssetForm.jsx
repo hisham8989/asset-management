@@ -60,7 +60,7 @@ const AssetForm = ({ setLoading }) => {
         validationSchema={AssetFormSchema}
         onSubmit={handleSubmit}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, dirty, isSubmitting }) => (
           <Form style={styles.form}>
             <Field name="name" placeholder="name*" style={styles.formField} />
             {errors.name && touched.name ? (
@@ -84,7 +84,11 @@ const AssetForm = ({ setLoading }) => {
               </span>
             </div>
             <FileUploader name="folder" />
-            <button style={styles.submitBtn} type="submit">
+            <button
+              className="upload-asset-btn"
+              type="submit"
+              disabled={isSubmitting || !dirty}
+            >
               upload
             </button>
           </Form>
@@ -120,19 +124,6 @@ const styles = {
     fontSize: 12,
     color: "#120E43",
     fontWeight: "bold",
-  },
-  submitBtn: {
-    padding: "6px 12px",
-    margin: "10px 0px 10px 0px",
-    borderRadius: "20px",
-    cursor: "pointer",
-    outline: "none",
-    border: "none",
-    backgroundColor: "#FF6263",
-    color: "white",
-    fontSize: "14px",
-    fontWeight: "600",
-    width: 300,
   },
 };
 

@@ -14,11 +14,6 @@ export const fetchAssetByUserId = {
 };
 
 export const createValidAsset = {
-  body: Joi.object({
-    name: Joi.string().required(),
-    category: Joi.string().required(),
-    tags: Joi.array().items(Joi.string()).min(1).required(),
-  }),
   params: Joi.object({
     userId: Joi.string().regex(validationConstant.OBJECTID_REGEX).required(),
   }),
