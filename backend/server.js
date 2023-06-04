@@ -14,16 +14,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 if (env === "production") {
   // Serve static files from the client's build/dist folder
-  app.use(express.static(path.join(__dirname, "frontend", "dist")));
+  // app.use(express.static(path.join(__dirname, "frontend", "dist")));
+
+  app.use(express.static(path.resolve(__dirname, "../frontend/dist")));
 
   // Route for serving the React app
-  app.get("/", (req, res) => {
-    return res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
-  });
+  // app.get("/", (req, res) => {
+  //   return res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+  // });
 }
 
 /** ROUTES */
-app.use("/", approutes);
+
+app.use("/", approutes); // <
 
 app.all("/*", (req, res) => {
   return res.status(400).json({
