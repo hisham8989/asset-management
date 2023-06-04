@@ -13,7 +13,6 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 /** ROUTES */
-
 app.use("/", approutes);
 
 if (env.name === "production") {
@@ -21,17 +20,17 @@ if (env.name === "production") {
   app.use(express.static(path.join(__dirname, "frontend", "dist")));
 
   // Route for serving the React app
-  app.get("/", (req, res) => {
+  app.get("*", (req, res) => {
     return res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
   });
-}
-
-app.all("/*", (req, res) => {
-  return res.status(400).json({
-    success: false,
-    error: "no api found",
+} else {
+  app.all("/*", (req, res) => {
+    return res.status(400).json({
+      success: false,
+      error: "no api found",
+    });
   });
-});
+}
 
 const port = env.port;
 
