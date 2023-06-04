@@ -26,11 +26,10 @@ const DisplayImages = () => {
             tags: data.tags,
             images,
           };
-          setLoading(false);
         });
-
-        setimageGroup(imageGroup);
       }
+      setLoading(false);
+      if (imageGroup.length > 0) setimageGroup(imageGroup);
     };
     fetchImages();
   }, []);
