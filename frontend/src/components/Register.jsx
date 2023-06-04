@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import userManager from "../manager/userManager.js";
-import SignInSignUpForm from "./signInSignUpForm";
+import SignInSignUpForm from "./SignInSignUpForm";
 import { useEffect } from "react";
 
 const Register = () => {
