@@ -14,20 +14,23 @@ const DisplayImages = () => {
     const fetchImages = async () => {
       const response = await assetManager.getAssetInfo();
       const imageGroup = [];
-      response.data.forEach((data, index) => {
-        const images = data.assetSource.keys.map(
-          (key) => `${data.assetSource.url}/${key}`
-        );
-        imageGroup[index] = {
-          id: data._id,
-          albumName: data.name,
-          category: data.category,
-          tags: data.tags,
-          images,
-        };
-        setLoading(false);
-      });
-      setimageGroup(imageGroup);
+      if (response.data.length > 0) {
+        response.data.forEach((data, index) => {
+          const images = data.assetSource.keys.map(
+            (key) => `${data.assetSource.url}/${key}`
+          );
+          imageGroup[index] = {
+            id: data._id,
+            albumName: data.name,
+            category: data.category,
+            tags: data.tags,
+            images,
+          };
+          setLoading(false);
+        });
+
+        setimageGroup(imageGroup);
+      }
     };
     fetchImages();
   }, []);
