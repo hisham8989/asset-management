@@ -16,10 +16,8 @@ if (env.name === "production") {
   // Serve static files from the client's build/dist folder
   app.use(express.static(path.join(__dirname, "frontend", "dist")));
 
-  console.log("Serving React App", env.name);
-
   // Route for serving the React app
-  app.get("/", (req, res) => {
+  app.get("*", (req, res) => {
     return res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
   });
 }
