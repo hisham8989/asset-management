@@ -6,7 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
-const AssetForm = () => {
+const AssetForm = ({ setLoading }) => {
   const navigate = useNavigate();
 
   const AssetFormSchema = Yup.object().shape({
@@ -26,6 +26,7 @@ const AssetForm = () => {
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
+    setLoading(true);
     const formData = new FormData();
     formData.append("folder", values.folder[0]);
     formData.append("tags", values.tags.split(","));
@@ -34,11 +35,13 @@ const AssetForm = () => {
     assetManager
       .createAssetData(formData)
       .then((res) => {
+        setLoading(false);
         navigate("/dashboard");
       })
       .catch((err) => {
         toast.error("failed to upload asset");
         console.log(err);
+        setLoading(false);
       });
   };
 
