@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import approutes from "./routes/app.routes.js";
 import env from "./config/environment.js";
 import { connectDB } from "./config/db.js";
+import { ValidationError } from "express-validation";
 
 /** CONFIGURATION */
 const __dirname = path.resolve();
@@ -33,6 +34,14 @@ if (env.name === "production") {
 }
 
 const port = env.port;
+
+// app.use(function (err, req, res, next) {
+//   if (err instanceof ValidationError) {
+//     return res.status(err.statusCode).json(err);
+//   }
+
+//   return res.status(500).json(err);
+// });
 
 connectDB()
   .then((connectedDb) => {

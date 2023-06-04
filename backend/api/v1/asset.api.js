@@ -1,4 +1,5 @@
 import express from "express";
+import { validate } from "express-validation";
 import { upload } from "../../config/aws-multer.js";
 import {
   createAsset,
@@ -7,23 +8,51 @@ import {
   destroyAssetById,
   updateAssetById,
 } from "../../controllers/assetController.js";
+import {
+  createValidAsset,
+  deleteValidAsset,
+  fetchAssetById,
+  fetchAssetByUserId,
+  updateValidAssetById,
+} from "../../validations/asset.validation.js";
+import { verifyToken } from "../../middlewares/authMiddleware.js";
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  return res.status(200).json({
-    status: true,
-    message: "OK",
-  });
-});
+router.get(
+  "/user/:userId",
+  validate(fetchAssetByUserId, {}, {}),
+  verifyToken,
+  getAssetByUserId
+);
 
-router.get("/user/:userId", getAssetByUserId);
+router.get(
+  "/:assetId",
+  validate(fetchAssetById, {}, {}),
+  verifyToken,
+  getAssetById
+);
 
-router.get("/:assetId", getAssetById);
+router.put(
+  "/update/:assetId",
+  validate(updateValidAssetById, {}, {}),
+  verifyToken,
+  updateAssetById
+);
 
-router.put("/update/:assetId", updateAssetById);
+router.post(
+  "/create/:userId",
+  validate(createValidAsset, {}, {}),
+  upload.single("folder"),
+  verifyToken,
+  createAsset
+);
 
-router.post("/create/:userId", upload.single("folder"), createAsset);
-
-router.delete("/delete/:assetId", destroyAssetById);
+router.delete(
+  "/delete/:assetId",
+  validate(deleteValidAsset, {}, {}),
+  verifyToken,
+  destroyAssetById
+);
 
 export default router;
