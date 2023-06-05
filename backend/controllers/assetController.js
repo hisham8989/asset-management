@@ -129,7 +129,7 @@ export const getAssetByUserId = async (req, res) => {
 export const getAssetById = async (req, res) => {
   try {
     const { assetId } = req.params;
-    const data = await assetDao.getAssetsByAssetId(assetId);
+    const data = await assetDao.getAssetByAssetId(assetId);
     return res.status(200).json({
       success: true,
       message: `${
@@ -172,7 +172,7 @@ export const updateAssetById = async (req, res) => {
       tags: req.body.tags,
       category: req.body.category,
     };
-    const asset = await assetDao.getAssetById(assetId);
+    const asset = await assetDao.getAssetByAssetId(assetId);
     if (!asset) {
       return res.status(200).json({
         success: false,

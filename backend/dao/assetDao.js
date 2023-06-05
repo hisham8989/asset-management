@@ -40,7 +40,7 @@ class AssetDao {
     });
   }
 
-  getAssetsByAssetId(assetId) {
+  getAssetByAssetId(assetId) {
     return new Promise(async (resolve, reject) => {
       try {
         const assets = await Asset.findOne({
