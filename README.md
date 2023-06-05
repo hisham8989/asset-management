@@ -121,3 +121,35 @@ To run this project locally, you will need to add the following environment vari
 ### Mongo DB record for an asset soft delete
 
 ![App Screenshot](./screenshots/assetBucketRecord.jpg)
+
+## cURL - Refer Api Reference as well
+
+### create a user
+
+```bash
+  curl --location 'https://asset-management-0au6.onrender.com/api/v1/user/create' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'name=new' \
+--data-urlencode 'email=new@gmail.com' \
+--data-urlencode 'password=Admin@123'
+```
+
+### login a user
+
+```bash
+  curl --location 'https://asset-management-0au6.onrender.com/api/v1/auth/login' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'email=new@gmail.com' \
+--data-urlencode 'password=Admin@123'
+```
+
+### create an asset
+
+```bash
+ curl --location 'https://asset-management-0au6.onrender.com/api/v1/asset/create/647a68e7be01b54e1ab9dd10' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2E2OGU3YmUwMWI1NGUxYWI5ZGQxHCIsImlhdCI6MTY4NTkxNDc4N30.M1jrZBHBrA7uiqOFydbjZ7hHgMhSEZ0bfJA6Tv6i79Q' \
+--form 'folder=@"/D:/Assinments - Company/Terra/Test.zip"' \
+--form 'name="hisham"' \
+--form 'tags="dasd"' \
+--form 'category="asda"'
+```
