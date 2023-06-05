@@ -129,9 +129,9 @@ To run this project locally, you will need to add the following environment vari
 ```bash
   curl --location 'https://asset-management-0au6.onrender.com/api/v1/user/create' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'name=new' \
---data-urlencode 'email=new@gmail.com' \
---data-urlencode 'password=Admin@123'
+--data-urlencode 'name=****' \
+--data-urlencode 'email=******' \
+--data-urlencode 'password=*****'
 ```
 
 ### login a user
@@ -139,8 +139,8 @@ To run this project locally, you will need to add the following environment vari
 ```bash
   curl --location 'https://asset-management-0au6.onrender.com/api/v1/auth/login' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'email=new@gmail.com' \
---data-urlencode 'password=Admin@123'
+--data-urlencode 'email=**********' \
+--data-urlencode 'password=*******'
 ```
 
 ### create an asset
