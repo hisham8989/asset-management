@@ -112,12 +112,12 @@ To run this project locally, you will need to add the following environment vari
 
 ### Mongo DB record for an asset
 
-![App Screenshot](./screenshots/asset-db-record.jpg)
+![App Screenshot](./screenshots/assetDbRecord.jpg)
 
 ### Mongo DB record for an asset soft delete
 
-![App Screenshot](./screenshots/asset-softDelete-db-record.jpg)
+![App Screenshot](./screenshots/assetSoftDeleteDbRecord.jpg)
 
 ### Mongo DB record for an asset soft delete
 
-![App Screenshot](./screenshots/asset-bucket-record.jpg)
+![App Screenshot](./screenshots/assetBucketRecord.jpg)
