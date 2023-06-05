@@ -132,7 +132,9 @@ export const getAssetById = async (req, res) => {
     const data = await assetDao.getAssetsByAssetId(assetId);
     return res.status(200).json({
       success: true,
-      message: "fetched available assets",
+      message: `${
+        !data ? "no asset found for this user" : "fetched asset succesfully"
+      }`,
       data,
     });
   } catch (err) {
@@ -165,12 +167,20 @@ export const destroyAssetById = async (req, res) => {
 export const updateAssetById = async (req, res) => {
   try {
     const { assetId } = req.params;
-    const asset = {
+    const assetBody = {
       name: req.body.name,
       tags: req.body.tags,
       category: req.body.category,
     };
-    const data = await assetDao.updateAssetByAssetId(assetId, asset);
+    const asset = await assetDao.getAssetById(assetId);
+    if (!asset) {
+      return res.status(200).json({
+        success: false,
+        message: "asset does not exist",
+        data,
+      });
+    }
+    const data = await assetDao.updateAssetByAssetId(asset._id, assetBody);
     return res.status(200).json({
       success: true,
       message: "asset updated",

@@ -19,6 +19,8 @@ import { verifyToken } from "../../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
+/** GET ALL ASSETS Of A USER
+ */
 router.get(
   "/user/:userId",
   validate(fetchAssetByUserId, {}, {}),
@@ -26,13 +28,16 @@ router.get(
   getAssetByUserId
 );
 
+/** GET AN ASSET
+ */
 router.get(
   "/:assetId",
   validate(fetchAssetById, {}, {}),
   verifyToken,
   getAssetById
 );
-
+/** GET AN ASSET
+ */
 router.put(
   "/update/:assetId",
   validate(updateValidAssetById, {}, {}),
@@ -40,6 +45,8 @@ router.put(
   updateAssetById
 );
 
+/** CREATE AN ASSET
+ */
 router.post(
   "/create/:userId",
   validate(createValidAsset, {}, {}),
@@ -47,6 +54,9 @@ router.post(
   verifyToken,
   createAsset
 );
+
+/** DELETE AN ASSET
+ */
 
 router.delete(
   "/delete/:assetId",
