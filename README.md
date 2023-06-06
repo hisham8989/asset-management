@@ -118,7 +118,7 @@ To run this project locally, you will need to add the following environment vari
 
 ![App Screenshot](./screenshots/assetSoftDeleteDbRecord.jpg)
 
-### Mongo DB record for an asset soft delete
+### Asset Folder Name as the uploaded folder in AWS S3 Bucket
 
 ![App Screenshot](./screenshots/assetBucketRecord.jpg)
 
